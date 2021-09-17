@@ -7,6 +7,7 @@ import 'package:wallet_app/src/utils/widgets/background_app.dart';
 import 'package:wallet_app/src/utils/utils.dart' as utils;
 import 'package:wallet_app/src/utils/widgets/dialog_app.dart';
 import 'package:wallet_app/src/utils/widgets/input_decoration.dart';
+
 class AuthenticationActivity extends StatefulWidget {
   const AuthenticationActivity({Key? key}) : super(key: key);
 
@@ -75,15 +76,14 @@ class _LogInFormState extends State<_LogInForm> {
 
   MaterialButton btnLogIn() => MaterialButton(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      disabledColor: Colors.grey.shade300,
+      disabledColor: Colors.grey,
       elevation: 0,
-      minWidth: size!.width * 0.9,
-      color: Colors.purple.shade100,
+      color: Colors.deepPurple,
       child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
+          padding: EdgeInsets.symmetric(horizontal: 80, vertical: 15),
           child: Text(
             loginForm!.isLoading ? 'Espere' : 'Ingresar',
-            style: const TextStyle(color: Colors.white),
+            style: TextStyle(color: Colors.white),
           )),
       onPressed: loginForm!.isLoading ? null : _login);
 
@@ -105,28 +105,15 @@ class _LogInFormState extends State<_LogInForm> {
   }
 
   void validateSesion() async {
-    List<User> usuarios = await _userProvider.session(_user);
-    final vStatus = usuarios[0].vStatus;
+    String? errorMessage = await _userProvider.session(_user);
+    print(errorMessage);
     loginForm!.isLoading = false;
 
-    switch (vStatus) {
-      case 'A':
-        Navigator.pushReplacementNamed(context, 'home');
-        break;
-      case 'N':
-        showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return CustomDialogBox(
-                title: "¡Aviso!",
-                descriptions: "Usuario o Contraseña incorrecta.",
-                text: "Confirmar",
-                function: () {
-                  Navigator.of(context).pop();
-                },
-              );
-            });
-        break;
+    if (errorMessage == null) {
+      Navigator.pushReplacementNamed(context, 'home');
+    } else {
+      NotificationsApp.showSnackbar(errorMessage, Colors.red);
+      loginForm!.isLoading = false;
     }
   }
 }
@@ -151,12 +138,12 @@ class _TxtUser extends StatelessWidget {
           autocorrect: false,
           keyboardType: TextInputType.text,
           decoration: InputDecorations.authInputDecoration(
-            hintText: 'Usuario',
-            labelText: 'Usuario',
+            hintText: 'Correo electronico',
+            labelText: 'Correo electronico',
             prefix: const Icon(Icons.perm_identity),
             //color: Colors.white,
           ),
-          onSaved: (userValue) => user.vUserId = userValue,
+          onSaved: (userValue) => user.vEmail = userValue,
           validator: (userValue) {
             //return utils.validaUser(userValue!);
           },

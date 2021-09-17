@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:wallet_app/src/utils/constants/constants.dart';
 
@@ -61,11 +60,11 @@ class _BackGround extends StatelessWidget {
     );
   }
 
-  BoxDecoration _decoration() =>  BoxDecoration(
+  BoxDecoration _decoration() => BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment(0.30, 0.6),
-          colors: <Color>[Constants.kLightYellow],
+          colors: <Color>[Constants.kLightYellow, Constants.kDarkBlue],
           tileMode: TileMode.repeated,
         ),
       );
