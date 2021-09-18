@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:wallet_app/src/providers/providers.dart';
 import 'package:wallet_app/src/providers/ui_provider.dart';
 import 'package:wallet_app/src/routes/routes.dart';
 import 'package:wallet_app/src/utils/notification-app.dart';
@@ -9,17 +10,29 @@ import 'package:wallet_app/src/utils/notification-app.dart';
  * developed by asalazarj
  */
 void main() async {
-  runApp(MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  final prefs = new PreferenciasUsuario();
+  await prefs.initPrefs();
+
+  runApp(AppState());
 }
 
-class MyApp extends StatelessWidget {
+class AppState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => UiProvider()),
       ],
-      child: MaterialApp(
+      child: MyApp(),
+    );
+  }
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
         title: 'wallet-digital',
         debugShowCheckedModeBanner: false,
         localizationsDelegates: [
@@ -38,7 +51,7 @@ class MyApp extends StatelessWidget {
             appBarTheme: AppBarTheme(elevation: 0, color: Colors.blue.shade900),
             floatingActionButtonTheme: FloatingActionButtonThemeData(
                 backgroundColor: Colors.blue.shade100, elevation: 0)),
-      ),
+      
     );
   }
 }

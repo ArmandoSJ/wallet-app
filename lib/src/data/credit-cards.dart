@@ -7,23 +7,7 @@ final List<CreditCard> tarjetas = <CreditCard>[
     brand: 'visa',
     cvv: '213',
     expiracyDate: '01/25',
-    cardHolderName: 'Fernando Herrera'
-  ),
-  CreditCard(
-    cardNumberHidden: '5555',
-    cardNumber: '5555555555554444',
-    brand: 'mastercard',
-    cvv: '213',
-    expiracyDate: '01/25',
-    cardHolderName: 'Melissa Flores'
-  ),
-  CreditCard(
-    cardNumberHidden: '3782',
-    cardNumber: '378282246310005',
-    brand: 'american express',
-    cvv: '2134',
-    expiracyDate: '01/25',
-    cardHolderName: 'Eduardo Rios'
+    cardHolderName: 'Jose Armando Salazar'
   ),
   
 ];

@@ -1,8 +1,6 @@
-import 'dart:convert';
 
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:wallet_app/src/utils/preferencias_usuario.dart';
+import 'package:wallet_app/src/providers/providers.dart';
 
 class EpayProvider extends ChangeNotifier {
   bool _isLoading = false;

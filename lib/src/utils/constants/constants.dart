@@ -2,6 +2,17 @@
 import 'package:flutter/material.dart';
 
 class Constants {
+
+
+  static const String URL_BASE = "http://localhost:8080";
+  static const String URL_LOGIN = "/login";
+  static const String URL_REGISTER = "/register";
+  static const String URL_SERVICES = "/liberet/services";
+  static const String URL_ADD_SERVICE = "/supplier/addservice";
+  static const String URL_UPDATE_CREDITS = "/supplier/wallet/recharge";
+  static const String URL_HISTORIC = "/supplier/wallet/historic";
+  static const String URL_DO_PAYMENT = "/wallet/dopayment";
+
   static const vPrimaryColor = Color(0xFF6F35A5);
   static const vPrimaryLightColor = Color(0xFF0D47A1);
   static const Color kLightYellow = Color(0xFFFFF9EC);

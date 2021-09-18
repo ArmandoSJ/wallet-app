@@ -1,10 +1,6 @@
-import 'dart:convert';
-
-import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
-import 'package:wallet_app/src/backend/models/user_model.dart';
-import 'package:wallet_app/src/utils/preferencias_usuario.dart';
+import 'package:wallet_app/src/providers/providers.dart';
+
 
 class SessionProvider extends ChangeNotifier {
   final _prefs = new PreferenciasUsuario();
@@ -31,10 +27,6 @@ class SessionProvider extends ChangeNotifier {
     final Map<String, dynamic> decodedResp = json.decode(resp.body);
 
     if (decodedResp.containsKey('token')) {
-      // Token hay que guardarlo en un lugar seguro
-      //await storage.write(key: 'token', value: decodedResp['token']);
-      // _prefs.usuarioid = decodedResp['token'];
-      // decodedResp['idToken'];
       return null;
     } else {
       return decodedResp['error']['message'];
@@ -50,7 +42,7 @@ class SessionProvider extends ChangeNotifier {
       'password': usuario.vPassword
     };
 
-    final vUrl = Uri.parse("http://localhost:8080/login");
+    final vUrl = Uri.parse(Constants.URL_BASE + Constants.URL_LOGIN);
 
     final vResponse = await http.post(vUrl,
         body: json.encode(authData),
@@ -64,7 +56,6 @@ class SessionProvider extends ChangeNotifier {
 
       if (decodedResp.containsKey('token')) {
         _prefs.usuarioid = decodedResp['token'];
-        //print(decodedResp['token']);
         //await storage.write(key: 'token', value: decodedResp['token']);
         return null;
       } else {
@@ -74,7 +65,8 @@ class SessionProvider extends ChangeNotifier {
   }
 
   Future logout() async {
-    await storage.delete(key: 'token');
+    //await storage.delete(key: 'token');
+    //_prefs.usuarioid = "";
     return;
   }
 
