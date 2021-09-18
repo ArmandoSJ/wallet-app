@@ -5,7 +5,6 @@ import 'package:wallet_app/src/providers/auth_provider.dart';
 import 'package:wallet_app/src/utils/notification-app.dart';
 import 'package:wallet_app/src/utils/widgets/background_app.dart';
 import 'package:wallet_app/src/utils/utils.dart' as utils;
-import 'package:wallet_app/src/utils/widgets/dialog_app.dart';
 import 'package:wallet_app/src/utils/widgets/input_decoration.dart';
 
 class AuthenticationActivity extends StatefulWidget {

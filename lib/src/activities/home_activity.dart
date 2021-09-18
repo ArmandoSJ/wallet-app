@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wallet_app/src/activities/credit_card_activity.dart';
 import 'package:wallet_app/src/activities/historic.dart';
-import 'package:wallet_app/src/activities/user_profile_activity.dart';
 import 'package:wallet_app/src/providers/ui_provider.dart';
 import 'package:wallet_app/src/utils/widgets/custom_navigationbar.dart';
 
